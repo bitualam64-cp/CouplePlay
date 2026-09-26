@@ -1,0 +1,230 @@
+@import "tailwindcss";
+
+@theme {
+  --color-blush: #fbe4db;
+  --color-coral-deep: #c8425a;
+  --color-coral: #e85f73;
+  --color-gold: #e8a87c;
+  --color-mint: #a8d8b9;
+  --color-plum-soft: #6b4a62;
+  --color-plum: #3d1f35;
+  --color-rose: #f4a6b0;
+  --font-sans: "Karla", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+  --font-hand: "Caveat", cursive;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-plum);
+  -webkit-font-smoothing: antialiased;
+  background:
+    radial-gradient(1200px 800px at 10% -10%, #ffd9ca, #0000 50%),
+    radial-gradient(900px 700px at 110% 10%, #fbe4db, #0000 55%),
+    radial-gradient(700px 500px at 50% 120%, #ffe8de, #0000 60%),
+    #fff5ee;
+  min-height: 100vh;
+}
+
+::selection {
+  color: #3d1f35;
+  background: #fcd5c4;
+}
+
+/* ---------- typographic + surface primitives ---------- */
+.heading-serif {
+  font-family: var(--font-serif);
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+.script {
+  font-family: var(--font-hand);
+}
+
+.card {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background: #ffffffd9;
+  border: 1px solid #e85f731f;
+  border-radius: 28px;
+}
+
+.pill {
+  letter-spacing: 0.02em;
+  border-radius: 999px;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-flex;
+}
+
+.btn-primary {
+  color: #fff;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  background: linear-gradient(135deg, #e85f73, #c8425a);
+  border: none;
+  border-radius: 999px;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.6rem;
+  font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.2s, filter 0.15s;
+  display: inline-flex;
+  box-shadow: 0 12px 24px -12px #e85f73b3;
+}
+.btn-primary:hover:not(:disabled) {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  color: var(--color-plum);
+  cursor: pointer;
+  background: transparent;
+  border: 1.5px solid #c8425a4d;
+  border-radius: 999px;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  font-weight: 600;
+  transition: all 0.15s;
+  display: inline-flex;
+}
+.btn-ghost:hover:not(:disabled) {
+  border-color: var(--color-coral);
+  background: #e85f7314;
+}
+.btn-ghost:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.input {
+  width: 100%;
+  color: var(--color-plum);
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  background: #ffffffd9;
+  border: 1.5px solid #e85f7340;
+  border-radius: 16px;
+  outline: none;
+  padding: 0.85rem 1.1rem;
+  transition: all 0.15s;
+}
+.input:focus {
+  border-color: var(--color-coral);
+  box-shadow: 0 0 0 4px #e85f731f;
+}
+.input::placeholder {
+  color: #3d1f3566;
+}
+
+.canvas-cursor {
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.shadow-warm {
+  box-shadow: 0 20px 40px -20px #e85f7359, 0 2px 8px -2px #3d1f3514;
+}
+.shadow-warm-lg {
+  box-shadow: 0 30px 60px -25px #e85f7380, 0 6px 16px -6px #3d1f351a;
+}
+
+/* ---------- motion ---------- */
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+@keyframes pulseHeart {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
+@keyframes spinSlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.float {
+  animation: 4s ease-in-out infinite floatY;
+}
+.pulse-heart {
+  animation: 1.6s ease-in-out infinite pulseHeart;
+}
+.spin-slow {
+  animation: 3s linear infinite spinSlow;
+}
+
+/* ---------- little extras ---------- */
+@keyframes popIn {
+  from {
+    transform: scale(0.86);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.pop-in {
+  animation: 0.4s cubic-bezier(0.2, 1.4, 0.4, 1) popIn;
+}
+
+@keyframes burstHeart {
+  0% {
+    transform: translate(0, 0) scale(0.6) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--bx), var(--by)) scale(1.15) rotate(var(--br));
+    opacity: 0;
+  }
+}
+.burst-heart {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  pointer-events: none;
+  animation: burstHeart 1.15s cubic-bezier(0.15, 0.7, 0.3, 1) forwards;
+}
+
+@keyframes toastIn {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.swatch-btn {
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.swatch-btn:hover {
+  transform: scale(1.12);
+}
